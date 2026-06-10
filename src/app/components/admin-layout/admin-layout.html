@@ -1,0 +1,38 @@
+<div class="min-vh-100 bg-light d-flex flex-column">
+  
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/admin">
+        <i class="fa-solid fa-trophy text-warning me-2"></i> Admin Panel
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/teams" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/polls" routerLinkActive="active">Polls</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-warning" routerLink="/admin/reveal" routerLinkActive="active fw-bold">Reveal Winner</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <span class="text-light me-3 small"><i class="fa-regular fa-user me-1"></i> {{ authService.currentUserValue?.email }}</span>
+          <button class="btn btn-outline-light btn-sm rounded-pill px-3" (click)="logout()">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow-1 p-3 p-md-4">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

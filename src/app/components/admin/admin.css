@@ -1,0 +1,62 @@
+.admin-container {
+  max-width: 1000px;
+}
+
+.summary-card {
+  border-radius: 12px;
+}
+
+.summary-card h2 {
+  font-size: 2.5rem;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-team-card {
+  background-color: #f1f7e8; /* Light green background */
+  border-radius: 12px;
+}
+
+.custom-input {
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+}
+
+.custom-input:focus {
+  border-color: #5b9a27;
+  box-shadow: 0 0 0 0.25rem rgba(91, 154, 39, 0.1);
+}
+
+.add-btn {
+  background-color: #2b5314; /* Dark green matching the UI */
+  border-color: #2b5314;
+  border-radius: 8px;
+}
+
+.add-btn:hover {
+  background-color: #1e3d0e;
+  border-color: #1e3d0e;
+}
+
+.bg-success-subtle {
+  background-color: #e6f4ea !important;
+}
+
+.text-success {
+  color: #1e8e3e !important;
+}
+
+.bg-danger-subtle {
+  background-color: #fce8e6 !important;
+}
+
+.text-danger {
+  color: #d93025 !important;
+}

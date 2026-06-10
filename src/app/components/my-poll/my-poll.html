@@ -1,0 +1,96 @@
+<div class="container py-4 my-poll-container">
+  
+  <div class="mb-4">
+    <h2 class="fw-bold mb-1">My Poll</h2>
+    <div class="text-muted">Your vote and global results</div>
+  </div>
+
+  <div *ngIf="!userPoll" class="card border-0 shadow-sm text-center py-5 mb-4">
+    <div class="card-body">
+      <h3 class="fw-bold text-muted mb-3">You haven't voted yet</h3>
+      <button class="btn btn-primary px-4" (click)="goToTeams()">Go to Teams to Vote</button>
+    </div>
+  </div>
+
+  <div *ngIf="userPoll && votedTeam" class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-4">
+          <h2 class="fw-bold mb-0 me-2" style="font-size: 2.5rem;">{{ votedTeam.code }}</h2>
+          <div>
+            <h4 class="mb-1">{{ votedTeam.name }}</h4>
+            <div class="text-muted small">Your vote — cast on {{ userPoll.castAt | date:'dd MMM yyyy, HH:mm' }}</div>
+          </div>
+        </div>
+        <div>
+          <span class="badge rounded-pill bg-success-subtle text-success py-2 px-3 fw-medium" style="font-size: 0.9rem;">
+            <i class="fa-solid fa-check me-1"></i> Voted
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pre-Reveal Stats -->
+  <div *ngIf="userPoll && !isRevealed" class="card border-0 shadow-sm mt-4">
+    <div class="card-body p-4 text-center py-5">
+      <h5 class="fw-bold mb-4">Global Results</h5>
+      
+      <div class="d-flex justify-content-center gap-4 mb-4">
+        <div class="bg-light p-4 rounded-3 text-center" style="min-width: 150px;">
+          <div class="text-muted small mb-2">Total Votes Cast</div>
+          <h2 class="fw-bold text-primary mb-0">{{ totalVotes }}</h2>
+        </div>
+        <div class="bg-light p-4 rounded-3 text-center" style="min-width: 150px;">
+          <div class="text-muted small mb-2">Winning Team</div>
+          <h2 class="fw-bold text-secondary mb-0">??</h2>
+        </div>
+      </div>
+
+      <div class="alert custom-warning-alert d-flex align-items-center justify-content-center mb-0" role="alert" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 8px;">
+        <i class="fa-regular fa-clock me-2"></i>
+        <div>Results are hidden. Check back after the admin reveals the winner!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post-Reveal Stats -->
+  <div *ngIf="userPoll && isRevealed" class="results-container mt-4">
+    <div class="text-center mb-4">
+      <div class="mb-2">
+        <i class="fa-solid fa-trophy" style="font-size: 2.5rem; color: #c98e27;"></i>
+      </div>
+      <h2 class="fw-bold mb-1">Result revealed!</h2>
+      <p class="text-muted">The admin has announced the winner</p>
+    </div>
+
+    <div class="card winner-card mb-5 border-0 shadow-sm" [ngClass]="{'border border-success border-2': winner?.id === votedTeam?.id}">
+      <div class="card-body text-center py-5">
+        <div class="text-success fw-bold small mb-3" style="letter-spacing: 2px;">WINNER</div>
+        <h1 class="display-3 fw-bold mb-0">{{ winner?.code }}</h1>
+        <h3 class="mb-4">{{ winner?.name }}</h3>
+        <div *ngIf="winner?.id === votedTeam?.id" class="text-success fw-bold small d-flex justify-content-center align-items-center">
+          <i class="fa-solid fa-check me-1 fs-5"></i> Your voted team won!
+        </div>
+      </div>
+    </div>
+
+    <h5 class="fw-bold mb-4">Vote breakdown</h5>
+    
+    <div class="breakdown-list bg-white p-4 rounded-3 shadow-sm">
+      <div *ngIf="voteBreakdown.length === 0" class="text-muted text-center py-3">No votes cast yet.</div>
+      <div *ngFor="let item of voteBreakdown; let i = index" class="d-flex align-items-center mb-3">
+        <div class="fw-bold me-2" style="width: 40px;">{{ item.team.code }}</div>
+        <div class="me-4 text-truncate" style="width: 120px;">{{ item.team.name }}</div>
+        <div class="flex-grow-1 position-relative" style="height: 12px; background-color: #f8f9fa; border-radius: 6px; overflow: hidden;">
+          <div class="position-absolute top-0 start-0 h-100 rounded-pill" 
+               [style.width.%]="item.percentage"
+               [ngClass]="i === 0 ? 'bg-success' : (i < 3 ? 'bg-primary' : 'bg-secondary')">
+          </div>
+        </div>
+        <div class="ms-3 fw-semibold text-end" style="width: 50px;">{{ item.percentage }}%</div>
+      </div>
+    </div>
+  </div>
+
+</div>

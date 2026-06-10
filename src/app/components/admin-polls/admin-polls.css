@@ -1,0 +1,31 @@
+.admin-container {
+  max-width: 1000px;
+}
+
+.summary-card {
+  border-radius: 12px;
+}
+
+.summary-card h2 {
+  font-size: 2.5rem;
+}
+
+.top-team-text {
+  color: #c98e27; /* Golden brown matching the screenshot */
+}
+
+.bg-gold {
+  background-color: #c98e27 !important; /* Golden brown for progress bars */
+}
+
+.bg-secondary {
+  background-color: #909090 !important; /* Grey for progress bars */
+}
+
+.text-success {
+  color: #2b5314 !important; /* Darker green matching screenshot */
+}
+
+.text-danger {
+  color: #b3261e !important; /* Red matching screenshot */
+}

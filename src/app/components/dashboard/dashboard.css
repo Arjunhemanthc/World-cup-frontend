@@ -1,0 +1,110 @@
+.dashboard-container {
+  max-width: 900px;
+}
+
+.filter-btn {
+  white-space: nowrap;
+  font-weight: 500;
+  border-color: #dcdcdc;
+  color: #333;
+}
+
+.filter-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.filter-btn.btn-dark {
+  background-color: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+.filter-btn.btn-dark:hover {
+  background-color: #333;
+}
+
+.team-card {
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.team-card:hover {
+  border-color: #ccc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.selected-card {
+  border-color: #0b57d0; /* Blue border */
+  background-color: #f0f4f9; /* Light blue background */
+  box-shadow: 0 0 0 1px #0b57d0;
+}
+
+.selected-card:hover {
+  border-color: #0b57d0;
+}
+
+.selection-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 900px;
+  background-color: #e8f0fe; /* Light blue matching the screenshot */
+  border-radius: 12px;
+  z-index: 1000;
+}
+
+.selection-title {
+  color: #0b57d0 !important;
+}
+
+.selection-subtitle {
+  color: #0b57d0 !important;
+  opacity: 0.8;
+}
+
+/* Make submit button a slightly darker blue */
+.selection-bar .btn-primary {
+  background-color: #0b57d0;
+  border-color: #0b57d0;
+  border-radius: 8px;
+}
+
+.selection-bar .btn-primary:hover {
+  background-color: #0842a0;
+}
+
+.custom-warning-alert {
+  background-color: #faebd7; /* Light beige/orange matching screenshot */
+  color: #8c560f; /* Darker brown/orange for text and icon */
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+}
+
+.winner-card {
+  background-color: #eef5e9; /* Light green background */
+  border: 1px solid #d4e8c1 !important; /* Slightly darker green border */
+  border-radius: 12px;
+}
+
+.letter-spacing-wide {
+  letter-spacing: 0.05em;
+}
+
+.bg-success {
+  background-color: #5b9a27 !important; /* Adjust green color for bars */
+}
+
+.bg-primary {
+  background-color: #3182ce !important; /* Adjust blue color for bars */
+}
+
+.bg-secondary {
+  background-color: #909090 !important; /* Adjust grey color for bars */
+}

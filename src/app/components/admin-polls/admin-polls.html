@@ -1,0 +1,87 @@
+<div class="container py-4 admin-container">
+  
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold mb-0">Polls Overview</h3>
+  </div>
+
+  <div class="row g-3 mb-4" *ngIf="stats">
+    <div class="col-12 col-md-3">
+      <div class="card bg-light border-0 text-center py-4 h-100 summary-card">
+        <div class="text-muted small mb-1">Total Users</div>
+        <h2 class="fw-bold mb-0">{{ stats.totalUsers }}</h2>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="card bg-light border-0 text-center py-4 h-100 summary-card">
+        <div class="text-muted small mb-1">Total Votes</div>
+        <h2 class="fw-bold mb-0 text-primary">{{ stats.voted }}</h2>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="card bg-light border-0 text-center py-4 h-100 summary-card">
+        <div class="text-muted small mb-1">Not Voted</div>
+        <h2 class="fw-bold mb-0 text-danger">{{ stats.notVoted }}</h2>
+      </div>
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="card bg-light border-0 text-center py-4 h-100 summary-card">
+        <div class="text-muted small mb-1">Current Leader</div>
+        <h2 class="fw-bold mb-0 text-success">{{ stats.topTeam?.code || 'N/A' }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="fw-bold mb-3">Vote Breakdown</h5>
+  <div class="table-responsive mb-5 border rounded-3">
+    <table class="table mb-0 align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="py-3 px-4 rounded-top-start" style="width: 10%;">Rank</th>
+          <th scope="col" class="py-3" style="width: 50%;">Team</th>
+          <th scope="col" class="py-3 text-end" style="width: 20%;">Votes</th>
+          <th scope="col" class="py-3 px-4 rounded-top-end text-end" style="width: 20%;">Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stat of votesByTeam; let i = index" class="border-bottom">
+          <td class="px-4 py-3 fw-bold">{{ i + 1 }}</td>
+          <td class="py-3">
+            <span class="fw-bold me-2 small">{{ stat.team.code }}</span>
+            <span>{{ stat.team.name }}</span>
+          </td>
+          <td class="py-3 text-end fw-medium">{{ stat.votes }}</td>
+          <td class="py-3 px-4 text-end">
+            <span class="badge bg-secondary rounded-pill px-3 py-2">{{ stat.percentage }}%</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h5 class="fw-bold mb-3">Recent User Votes</h5>
+  <div class="table-responsive border rounded-3">
+    <table class="table mb-0 align-middle table-hover">
+      <thead class="table-light">
+        <tr>
+          <th scope="col" class="py-3 px-4 rounded-top-start" style="width: 40%;">User Email</th>
+          <th scope="col" class="py-3" style="width: 30%;">Voted For</th>
+          <th scope="col" class="py-3 px-4 rounded-top-end text-end" style="width: 30%;">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vote of recentVotes" class="border-bottom">
+          <td class="px-4 py-3">{{ vote.user }}</td>
+          <td class="py-3">
+            <span class="fw-bold me-2 small">{{ vote.team.code }}</span>
+            {{ vote.team.name }}
+          </td>
+          <td class="py-3 px-4 text-end text-muted small">{{ vote.votedAt | date:'medium' }}</td>
+        </tr>
+        <tr *ngIf="recentVotes.length === 0">
+          <td colspan="3" class="text-center py-4 text-muted">No votes have been cast yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
