@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService, 
     private router: Router,
-    private ngZone: import('@angular/core').NgZone
+    private ngZone: NgZone
   ) {}
 
   onSubmit() {
