@@ -23,14 +23,10 @@ export class AdminComponent implements OnInit {
   // New team form
   newTeamName = '';
   newTeamCode = '';
-  newTeamGroup = 'Group A';
-
-  groups = ['Group A', 'Group B', 'Group C', 'Group D', 'Group E', 'Group F', 'Group G', 'Group H'];
 
   editingTeamId: string | null = null;
   editTeamName = '';
   editTeamCode = '';
-  editTeamGroup = '';
 
   constructor(private pollService: PollService, private cdr: ChangeDetectorRef) {}
 
@@ -58,12 +54,11 @@ export class AdminComponent implements OnInit {
   }
 
   saveTeam() {
-    if (!this.newTeamName || !this.newTeamCode || !this.newTeamGroup) return;
+    if (!this.newTeamName || !this.newTeamCode) return;
     
     const newTeam = {
       code: this.newTeamCode,
       name: this.newTeamName,
-      group: this.newTeamGroup,
       status: 'Active'
     };
 
@@ -73,7 +68,6 @@ export class AdminComponent implements OnInit {
         // Reset form
         this.newTeamName = '';
         this.newTeamCode = '';
-        this.newTeamGroup = 'Group A';
       },
       error: (err) => {
         console.error('Failed to add team', err);
@@ -86,7 +80,6 @@ export class AdminComponent implements OnInit {
     this.editingTeamId = team.id;
     this.editTeamName = team.name;
     this.editTeamCode = team.code;
-    this.editTeamGroup = team.group;
   }
 
   cancelEdit() {
@@ -94,9 +87,9 @@ export class AdminComponent implements OnInit {
   }
 
   saveEdit(team: Team) {
-    if (!this.editTeamName || !this.editTeamCode || !this.editTeamGroup) return;
+    if (!this.editTeamName || !this.editTeamCode) return;
 
-    const updatedTeam = { ...team, name: this.editTeamName, code: this.editTeamCode, group: this.editTeamGroup } as Team;
+    const updatedTeam = { ...team, name: this.editTeamName, code: this.editTeamCode } as Team;
     this.pollService.updateTeam(team.id, updatedTeam).subscribe({
       next: () => {
         this.loadTeams();

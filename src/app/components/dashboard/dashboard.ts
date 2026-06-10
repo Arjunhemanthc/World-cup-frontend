@@ -15,8 +15,6 @@ import { Team, Poll } from '../../models/team';
 export class DashboardComponent implements OnInit {
   teams: Team[] = [];
   filteredTeams: Team[] = [];
-  groups: string[] = ['All', 'Group A', 'Group B', 'Group C'];
-  activeGroup = 'All';
 
   // Pagination
   pageSize = 6;
@@ -50,7 +48,7 @@ export class DashboardComponent implements OnInit {
       next: (t) => {
         const teamArray = Array.isArray(t) ? t : [];
         this.teams = teamArray.filter(team => team && team.status === 'Active');
-        this.filterTeams(this.activeGroup);
+        this.initializeTeams();
         this.cdr.detectChanges();
         
         this.pollService.getUserPoll().subscribe({
@@ -66,18 +64,13 @@ export class DashboardComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error loading teams:', err);
-        this.filterTeams(this.activeGroup); // fallback to empty
+        this.initializeTeams(); // fallback to empty
       }
     });
   }
 
-  filterTeams(group: string) {
-    this.activeGroup = group;
-    if (group === 'All') {
-      this.filteredTeams = [...this.teams];
-    } else {
-      this.filteredTeams = this.teams.filter(t => t.group === group);
-    }
+  initializeTeams() {
+    this.filteredTeams = [...this.teams];
     
     this.totalPages = Math.ceil(this.filteredTeams.length / this.pageSize);
     this.currentPage = 1;

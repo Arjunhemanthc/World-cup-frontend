@@ -79,7 +79,7 @@ export class AdminRevealComponent implements OnInit {
   }
 
   resetPoll() {
-    const isConfirmed = confirm('CRITICAL WARNING: You are about to permanently delete all votes and reset the system. This cannot be undone. Are you absolutely sure?');
+    const isConfirmed = confirm('Are you sure you want to start a new poll? This will reset all votes.');
     if (!isConfirmed) return;
 
     this.pollService.resetPoll().subscribe({

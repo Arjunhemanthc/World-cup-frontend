@@ -37,9 +37,8 @@
         <tr>
           <th scope="col" class="py-3 px-4 rounded-top-start" style="width: 5%;">#</th>
           <th scope="col" class="py-3" style="width: 35%;">Team</th>
-          <th scope="col" class="py-3" style="width: 25%;">Group</th>
-          <th scope="col" class="py-3" style="width: 15%;">Status</th>
-          <th scope="col" class="py-3 px-4 rounded-top-end text-end" style="width: 20%;">Actions</th>
+          <th scope="col" class="py-3" style="width: 25%;">Status</th>
+          <th scope="col" class="py-3 px-4 rounded-top-end text-end" style="width: 40%;">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +51,7 @@
               <span class="fw-bold me-2 small">{{ team.code }}</span>
               <span>{{ team.name }}</span>
             </td>
-            <td class="py-3">{{ team.group }}</td>
+
             <td class="py-3">
               <span class="badge rounded-pill px-3 py-2 fw-medium"
                     [ngClass]="team.status === 'Active' ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'"
@@ -79,11 +78,7 @@
                 <input type="text" class="form-control form-control-sm" [(ngModel)]="editTeamName" placeholder="Name">
               </div>
             </td>
-            <td class="py-3">
-              <select class="form-select form-select-sm" [(ngModel)]="editTeamGroup">
-                <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
-              </select>
-            </td>
+
             <td class="py-3">
               <span class="badge rounded-pill px-3 py-2 fw-medium bg-secondary text-white">Editing</span>
             </td>
@@ -108,9 +103,7 @@
       <div class="d-flex flex-wrap flex-md-nowrap gap-3 align-items-center">
         <input type="text" class="form-control border-0 shadow-sm" [(ngModel)]="newTeamCode" placeholder="Code (e.g. POR)" style="max-width: 150px;">
         <input type="text" class="form-control border-0 shadow-sm" [(ngModel)]="newTeamName" placeholder="Team Name (e.g. Portugal)">
-        <select class="form-select border-0 shadow-sm" [(ngModel)]="newTeamGroup" style="max-width: 200px;">
-          <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
-        </select>
+
         <button class="btn btn-dark px-4 shadow-sm" (click)="saveTeam()">
           Add Team
         </button>

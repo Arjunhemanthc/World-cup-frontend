@@ -2,7 +2,6 @@ export interface Team {
   id: string;
   code: string;
   name: string;
-  group: string;
   status: 'Active' | 'Inactive';
 }
 
